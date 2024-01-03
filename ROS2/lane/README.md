@@ -9,7 +9,7 @@ $ ros2 run image_tools cam2image
 #$ ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ~/ros2_ws/src/usb_cam/config/params_1.yaml
 
 
-## Lane_detection && Publish twist_msg(cmd_vel
+## Lane_detection && Publish twist_msg(cmd_vel)
 $ ros2 run lane lane1
 
 
@@ -21,4 +21,4 @@ $ ros2 run lane lane2
 
 $ ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ~/ros2_ws/src/usb_cam/config/params_1.yaml
 
-$ ros2 laumch lane lane_detect.launch.py
+$ ros2 launch lane lane_detect.launch.py
