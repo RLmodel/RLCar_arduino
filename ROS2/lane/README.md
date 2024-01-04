@@ -1,4 +1,4 @@
-# lane_arduino
+# lane_detection with Sliding Window
 
 
 ## image_tools cam2image
