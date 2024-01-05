@@ -26,7 +26,7 @@ class ImageSubscriber(Node):
         #self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
         self.steering = self.create_publisher(Twist, '/cmd_vel', 10)
         
-        timer_period = 1    #timer 
+        timer_period = 1    #p
         self.timer = self.create_timer(timer_period, self.steering_callback)
         
         
@@ -41,7 +41,7 @@ class ImageSubscriber(Node):
         cv2.imshow("camera", result)
         cv2.waitKey(2)
         
-        self.error = lnum-rnum  # left_line num - right_line num  
+        self.error = lnum-rnum  # left_line num - right_line num   #p
         
 
     def steering_callback(self):
@@ -50,21 +50,21 @@ class ImageSubscriber(Node):
         print(f'lnum = {error}')
         print(f'rnum = {error}') 
 
-        if error > 4:
+        if error > 4:                           #p
             print(f' == right == :  {error}')
-            twist_msg.linear.x = 0.3
-            twist_msg.angular.z = float(error) 
+            twist_msg.linear.x = 0.3            #p
+            twist_msg.angular.z = float(error)  #p
             self.steering.publish(twist_msg)
 
-        elif error < -4:
+        elif error < -4:                        #P
             print(f' == left == :  {error}')
-            twist_msg.linear.x = 0.3
-            twist_msg.angular.z = float(error)
+            twist_msg.linear.x = 0.3            #p
+            twist_msg.angular.z = float(error)  #p
             self.steering.publish(twist_msg)
 
-        else:
+        else:                                   #p
             print(f' == straight == :  {error}')
-            twist_msg.linear.x = 0.3
+            twist_msg.linear.x = 0.3            #p
             twist_msg.angular.z = 0.0
             self.steering.publish(twist_msg)
 
