@@ -77,9 +77,12 @@ class ImageSubscriber(Node):
 def process_frame(frame):
     global height, width
     # 이미지 크기를 줄여 속도 향상
-    height, width = frame.shape[:2]
+    
+    
+    #height, width = frame.shape[:2]
     #print(width, height)
     frame = cv2.resize(frame, (640, 480)) #2
+    #frame = cv2.resize(frame, (width // 1, height // 1)) #2
     frame = frame[180:480, 0:640]
     # 이미지를 HSV로 변환
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -173,7 +176,7 @@ def calculate_center_line(left_lines, right_lines):
     
     if ((np.isnan(left_x) == True) or (np.isnan(left_y) ==True) or (np.isnan(right_x) == True) or (np.isnan(left_y) == True)):
         
-            center_line = ((385, 288), (208, 181)) # for NaN  
+            center_line = ((385, 288), (208, 181)) # for prevent NaN  
             return center_line
 
     else:
