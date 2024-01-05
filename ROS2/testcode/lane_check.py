@@ -11,59 +11,80 @@ from sensor_msgs.msg import Image # Image is the message type
 from cv_bridge import CvBridge # Package to convert between ROS and OpenCV Images
 import cv2 # OpenCV library
 import numpy as np
-import matplotlib.pyplot as plt
+from geometry_msgs.msg import Twist
 
 
 
 
 class ImageSubscriber(Node):
-  """
-  Create an ImageSubscriber class, which is a subclass of the Node class.
-  """
-  def __init__(self):
-    """
-    Class constructor to set up the node
-    """
-    # Initiate the Node class's constructor and give it a name
-    super().__init__('image_subscriber')
-      
-    # Create the subscriber. This subscriber will receive an Image
-    # from the video_frames topic. The queue size is 10 messages.
-    self.subscription = self.create_subscription(
-      Image, 
-      '/video_frames', 
-      self.listener_callback, 
-      10)
-    self.subscription # prevent unused variable warning
-      
-    # Used to convert between ROS and OpenCV images
-    self.br = CvBridge()
-   
-  def listener_callback(self, data):
-    """
-    Callback function.
-    """
-    # Display the message on the console
-    self.get_logger().info('Receiving video frame')
- 
-    # Convert ROS Image message to OpenCV image
-    current_frame = self.br.imgmsg_to_cv2(data)
     
-    # Display image
-    gray = cv2.cvtColor(current_frame,1)
-    result = process_frame(gray)
-    # edge = cv2.Canny(gray, 0, 300)
-    cv2.imshow("camera", result)
+    def __init__(self):
+        
+
+        # Initiate the Node class's constructor and give it a name
+        super().__init__('image_subscriber')
+          
+        # Create the subscriber. This subscriber will receive an Image
+        # from the video_frames topic. The queue size is 10 messages.
+
+        self.br = CvBridge()
+        # Used to convert between ROS and OpenCV images
+        self.subimg = self.create_subscription(Image, '/image', self.img_callback, 10)
+        #self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
+        self.steering = self.create_publisher(Twist, '/cmd_vel', 10)
+        
+        timer_period = 1
+        self.timer = self.create_timer(timer_period, self.steering_callback)
+        
+        
+        
+        self.error=0
     
-    cv2.waitKey(1)
+    def img_callback(self, data):
+        
+        current_frame = self.br.imgmsg_to_cv2(data, desired_encoding='bgr8')
+        gray = cv2.cvtColor(current_frame,1)
+        result = process_frame(gray)
+        cv2.imshow("camera", result)
+        cv2.waitKey(2)
+        self.error = lnum-rnum
+        
+
+    def steering_callback(self):
+        error = self.error
+        twist_msg = Twist()
+        print('rnum :',rnum)
+        print('lnum : ',lnum)
+        if error > 4:
+            print(f' == right == :  {error}')
+            twist_msg.linear.x = 0.3
+            twist_msg.angular.z = float(error)
+            self.steering.publish(twist_msg)
+
+        elif error < -4:
+            print(f' == left == :  {error}')
+            twist_msg.linear.x = 0.3
+            twist_msg.angular.z = float(error)
+            self.steering.publish(twist_msg)
+
+        else:
+            print(f' == straight == :  {error}')
+            twist_msg.linear.x = 0.3
+            twist_msg.angular.z = 0.0
+            self.steering.publish(twist_msg)
+
+        
+
+        
 
 
     
 def process_frame(frame):
     # 이미지 크기를 줄여 속도 향상
     height, width = frame.shape[:2]
-    frame = cv2.resize(frame, (width // 2, height // 2))
-
+    #print(width, height)
+    frame = cv2.resize(frame, (640, 480)) #2
+    frame = frame[180:480, 0:640]
     # 이미지를 HSV로 변환
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
@@ -95,15 +116,18 @@ def process_frame(frame):
         return frame
 
     # 차선 그리기
-    draw_lines(frame, lines)
+    else: 
+        draw_lines(frame, lines)
 
-    return frame
+        return frame
 
 def draw_lines(frame, lines):
     # 왼쪽 차선과 오른쪽 차선을 구분하기 위한 리스트 초기화
     left_lines = []
     right_lines = []
-
+    
+    global rnum
+    global lnum
     rnum = 0
     lnum = 0
 
@@ -117,43 +141,56 @@ def draw_lines(frame, lines):
                 left_lines.append(line)
                 lnum +=1
         else:
-            if (0.2 <slope < 5):
+             if (0.2 <slope < 5):
                 right_lines.append(line)
                 rnum += 1
-
-        print('rnum :',rnum)
-        print('lnum : ',lnum)
+        #print('rnum :',rnum)
+        #print('lnum : ',lnum)
 
     # 왼쪽 차선과 오른쪽 차선을 각각 그리기
-    draw_line_segments(frame, left_lines, color=(0, 255, 0))
-    draw_line_segments(frame, right_lines, color=(0, 0, 255))
+    # draw_line_segments(frame, left_lines, color=(0, 255, 0))
+    # draw_line_segments(frame, right_lines, color=(0, 0, 255))
 
     # 중앙선 계산 및 표시
-    # center_line = calculate_center_line(left_lines, right_lines)
-    # cv2.line(frame, center_line[0], center_line[1], (255, 255, 255), 2)
+    center_line = calculate_center_line(left_lines, right_lines)
+    cv2.line(frame, center_line[0], center_line[1], (255, 255, 255), 2)
 
     # 픽셀 값 출력
-    # pixel_value = calculate_pixel_value(frame, center_line)
-    # cv2.putText(frame, f"Pixel Value: {pixel_value}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    pixel_value = calculate_pixel_value(frame, center_line)
+    cv2.putText(frame, f"Pixel Value: {pixel_value}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
 def draw_line_segments(frame, lines, color):
     for line in lines:
         x1, y1, x2, y2 = line[0]
-        cv2.line(frame, (x1, y1), (x2, y2), color, 2)
+        # cv2.line(frame, (x1, y1), (x2, y2), color, 2)
 
 def calculate_center_line(left_lines, right_lines):
     # 왼쪽 차선과 오른쪽 차선의 끝점을 사용하여 중앙선 계산
-    left_x = np.mean([line[0][0] for line in left_lines])
-    left_y = np.mean([line[0][1] for line in left_lines])
-    right_x = np.mean([line[0][2] for line in right_lines])
-    right_y = np.mean([line[0][3] for line in right_lines])
+    left_x = (np.mean([line[0][0] for line in left_lines]))
+    left_y = (np.mean([line[0][1] for line in left_lines]))
+    right_x = (np.mean([line[0][2] for line in right_lines]))
+    right_y = (np.mean([line[0][3] for line in right_lines]))
 
-    center_line = ((int(left_x), int(left_y)), (int(right_x), int(right_y)))
+    #print('left x ', left_x)
+    #print('left y ',left_y)
 
-    return center_line
+    #if(left_x != nan)
+    if ((np.isnan(left_x) == True) or (np.isnan(left_y) ==True) or (np.isnan(right_x) == True) or (np.isnan(left_y) == True)):
+        print('np.isnan(leftx)',np.isnan(left_x))
+
+
+        global center_line
+        return center_line
+
+    else:
+        
+
+        center_line = ((int(left_x), int(left_y)), (int(right_x), int(right_y)))
+        return center_line
+
 
 def calculate_pixel_value(frame, center_line):
-        # 중앙선 위의 픽셀 값 계산
+    # 중앙선 위의 픽셀 값 계산
     mid_x = (center_line[0][0] + center_line[1][0]) // 2
     mid_y = (center_line[0][1] + center_line[1][1]) // 2
 
@@ -161,34 +198,28 @@ def calculate_pixel_value(frame, center_line):
 
     return pixel_value
 
-  
+
+
+
+
 def main(args=None):
-  
-  # Initialize the rclpy library
-  rclpy.init(args=args)
-  
-  # Create the node
-  image_subscriber = ImageSubscriber()
-  
-#   # Spin the node so the callback function is called.
-#   rclpy.spin(image_subscriber)
-  
-#   # Destroy the node explicitly
-#   # (optional - otherwise it will be done automatically
-#   # when the garbage collector destroys the node object)
-#   image_subscriber.destroy_node()
-  
-#   # Shutdown the ROS client library for Python
-#   rclpy.shutdown()
-  try:
-       rclpy.spin(image_subscriber)
-  except KeyboardInterrupt:
-        image_subscriber.get_logger().info('==stop clean===')
-  except BaseException:
-        image_subscriber.get_logger().info('==exception===')
-        raise
-  finally:
+    
+    
+    rclpy.init(args=args)
+    detect = ImageSubscriber()
+
+
+    try:
+        rclpy.spin(detect)
+    
+    except KeyboardInterrupt:
+        detect.get_logger().info('Stop detection')
+    
+    finally :
+        detect.destroy_node()
         rclpy.shutdown()
 
+
+
 if __name__ == '__main__':
-  main()
+    main()
