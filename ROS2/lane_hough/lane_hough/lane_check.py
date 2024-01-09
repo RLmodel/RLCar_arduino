@@ -29,8 +29,6 @@ class ImageSubscriber(Node):
         timer_period = 1    #p
         self.timer = self.create_timer(timer_period, self.steering_callback)
         
-        
-        
         self.error=0
     
     def img_callback(self, data):
@@ -45,7 +43,7 @@ class ImageSubscriber(Node):
         
 
     def steering_callback(self):
-        error = self.error
+        error = self.error*1.0                  #p
         twist_msg = Twist()
         print(f'lnum = {error}')
         print(f'rnum = {error}') 
@@ -53,16 +51,16 @@ class ImageSubscriber(Node):
         if error > 4:                           #p
             print(f' == right == :  {error}')
             twist_msg.linear.x = 0.3            #p
-            twist_msg.angular.z = float(error)  #p
+            twist_msg.angular.z = float(error)  
             self.steering.publish(twist_msg)
 
         elif error < -4:                        #P
             print(f' == left == :  {error}')
             twist_msg.linear.x = 0.3            #p
-            twist_msg.angular.z = float(error)  #p
+            twist_msg.angular.z = float(error)  
             self.steering.publish(twist_msg)
 
-        else:                                   #p
+        else:                                   
             print(f' == straight == :  {error}')
             twist_msg.linear.x = 0.3            #p
             twist_msg.angular.z = 0.0
