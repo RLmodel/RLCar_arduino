@@ -1,13 +1,64 @@
 # hough transform (canny)
 
 
-## $ ros2 run image_tools cam2image  or  $ ros2 run usb_cam usb_cam_node_exe
+# for teensy
 
-## $ ros2 launch src_odometry src_bringup.launch.py    (for teensy)
+
+
+## $ ros2 run image_tools cam2image                (for image_tools)
+
+## $ ros2 run usb_cam usb_cam_node_exe             (for usb_cam)
+
+## $ ros2 launch src_odometry src_bringup.launch.py    
 
 ## $ ros2 run lane_hough hough
 
-## $ ros2 run lane_hough serial    (for arduino)
+
+
+# for aruduino
+
+
+## $ ros2 run image_tools cam2image                (for image_tools)
+
+## $ ros2 run usb_cam usb_cam_node_exe             (for usb_cam)
+
+## $ ros2 run lane_hough hough                      
+
+## $ ros2 run lane_hough serial
+
+
+$ pip install opencv-python
+
+$ pip install pyserial
+
+check the serail port 
+
+$ ls /dev/ttyUSB*    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 + for labtop users
