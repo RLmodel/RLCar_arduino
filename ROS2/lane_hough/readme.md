@@ -35,8 +35,6 @@ check the serail port
 
 $ ls /dev/ttyUSB*    
 
-![download](https://github.com/RLmodel/RLCar_examples/assets/151706131/d62f1b0b-8a7d-4bd5-96bc-ce40ff445685)
-
 
 
 
