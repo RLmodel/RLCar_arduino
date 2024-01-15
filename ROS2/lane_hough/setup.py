@@ -22,8 +22,8 @@ setup(
         'console_scripts': [
         'hough = lane_hough.lane_check:main',
         'serial = lane_hough.lane_serial_sub:main',
-        'OBJ_DET = lane_hough.lane_stop:main',
-        'OBJ_DET30 = lane_hough.lane_stop_30:main',
+        'scan = lane_hough.lane_scan:main',
+        'scan30 = lane_hough.lane_scan_30:main',
         
         ],
     },
