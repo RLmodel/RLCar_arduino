@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
         'hough = lane_hough.lane_check:main',
         'serial = lane_hough.lane_serial_sub:main',
+        'stop = lane_hough.lane_stop:main',
         
         ],
     },
