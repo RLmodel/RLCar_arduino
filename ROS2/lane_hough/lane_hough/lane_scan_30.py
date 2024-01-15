@@ -47,10 +47,11 @@ class ImageSubscriber(Node):
         
 
     def steering_callback(self, msg):
-        len_front = msg.ranges[0]               # degree(0 ~ 359) == ranges[0 ~ 1079]
+        len_front = msg.ranges[0]               # degree(0 ~ 359) == ranges[0 ~ 1079] CCW
+        len_left15 = msg.ranges[45]              # 15 degree (left)  
         len_right15 = msg.ranges[1035]           # 15 degree (right)
-        len_left15 = msg.ranges[45]              # 15 degree (left)   
-        error = self.error*0.78                  #p
+   
+        error = self.error*0.78                      #p
         twist_msg = Twist()
         #print(f'lnum = {error}')
         #print(f'rnum = {error}')
@@ -58,7 +59,7 @@ class ImageSubscriber(Node):
         print(f"front : {len_front}")
         print(f"right : {len_right15}")
         #print(msg.ranges[0:45] + msg.ranges[1035:1079])      
-        if error > 4:
+        if error > 4:                                #p
             if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):                
                 #print(f' == right == :  {error}')
                 twist_msg.linear.x = 0.35            #p
@@ -71,7 +72,7 @@ class ImageSubscriber(Node):
                 
         
 
-        elif error < -4:                        #P
+        elif error < -4:                             #p         
             if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):   
             
                 #print(f' == left == :  {error}')
