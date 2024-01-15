@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
         'hough = lane_hough.lane_check:main',
-        'serial = lane_hough.lane_serial_sub:main',
+        'serial = lane_hough.lane_serial:main',
         'scan = lane_hough.lane_scan:main',
         'scan30 = lane_hough.lane_scan_30:main',
         
