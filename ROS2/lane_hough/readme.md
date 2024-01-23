@@ -13,7 +13,7 @@
 
  $ ros2 launch src_odometry src_bringup.launch.py    
 
- $ ros2 run lane_hough hough
+ $ ros2 run lane_hough scan
 
  
 ---
@@ -30,7 +30,7 @@
 
  $ ros2 run lane_hough serial
 
- $ ros2 run lane_hough hough
+ $ ros2 run lane_hough scan
 
 
 ---
