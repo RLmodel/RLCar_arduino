@@ -33,11 +33,17 @@
  $ ros2 run lane_hough hough
 
 
+--
+
+## dependency
+
 $ pip install opencv-python
 
 $ pip install pyserial
 
-check the serail port 
+--
+
+## check the serail port 
 
 $ ls /dev/ttyUSB*    
 
