@@ -43,30 +43,9 @@ $ pip install opencv-python
 $ pip install pyserial
 
 
-## check the serail port 
+## etc 
 
 $ ls /dev/ttyUSB*    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
