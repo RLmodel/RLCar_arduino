@@ -34,8 +34,6 @@
 
  $ ros2 run lane_hough serial
 
- -
-
  $ ros2 run lane_hough scan
 
 
