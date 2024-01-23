@@ -7,7 +7,7 @@
 
  $ ros2 run image_tools cam2image                (for image_tools)
 
- or
+               or
 
  $ ros2 run usb_cam usb_cam_node_exe             (for usb_cam)
 
@@ -26,7 +26,7 @@
 
  $ ros2 run image_tools cam2image                (for image_tools)
 
- or
+               or
 
  $ ros2 run usb_cam usb_cam_node_exe             (for usb_cam)
 
