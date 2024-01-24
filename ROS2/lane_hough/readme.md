@@ -14,9 +14,9 @@
 (초기 실행 시 카메라 조정 필요)
 
 ##### **camera(for image_tools)**
-    ros2 run image_tools cam2image    
+    ros2 run image_tools cam2image 
 ##### **camera(for usb_cam)**
-    ros2 run usb_cam usb_cam_node_exe        
+    ros2 run usb_cam usb_cam_node_exe     
 ##### **rplidar_ros**
     ros2 launch rplidar_ros rplidar_a2m8_launch.py
 ##### **serial**
@@ -32,15 +32,15 @@
 
 ---
 ##### **camera(for image_tools)**
-    ros2 run image_tools cam2image                          
+    ros2 run image_tools cam2image                   
 ##### **camera(for usb_cam)**
-    ros2 run usb_cam usb_cam_node_exe                      
+    ros2 run usb_cam usb_cam_node_exe                 
 ##### **rplidar_ros**
-    ros2 launch rplidar_ros rplidar_a2m8_launch.py                
+    ros2 launch rplidar_ros rplidar_a2m8_launch.py           
 ##### **scr_odometry**
-    ros2 launch src_odometry src_bringup.launch.py                 
+    ros2 launch src_odometry src_bringup.launch.py              
 ##### **lane_detection && steering && stop**
-    ros2 run lane_hough scan          
+    ros2 run lane_hough scan
 
   
 
@@ -53,14 +53,14 @@
 
 ### dependency
 
-$ pip install opencv-python
+    $ pip install opencv-python
 
-    $ pip install pyserial    
+    $ pip install pyserial
 
 
 ### etc 
 
-$ ls /dev/ttyUSB*    
+    $ ls /dev/ttyUSB*    
 
 
 
