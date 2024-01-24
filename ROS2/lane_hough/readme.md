@@ -6,6 +6,7 @@
     
     
 카메라는 아래 두 커맨드 중 각 차량에 맞게 한 개만 실행합니다. 
+총 4개 터미널 사용
 ##### **camera(for image_tools)**
         ros2 run image_tools cam2image          
 ##### **camera(for usb_cam)**
