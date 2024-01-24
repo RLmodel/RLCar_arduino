@@ -26,7 +26,8 @@
 
   
 
-  *hint : setup.py
+  **hint : setup.py
+  
 ---
 ### for teensy (6번 차량)
 
