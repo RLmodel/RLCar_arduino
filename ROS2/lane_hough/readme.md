@@ -70,3 +70,6 @@
 #
     ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ~/ros2_ws/src/usb_cam/config/params_1.yaml
 
+
+test
+
