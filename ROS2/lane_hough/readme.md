@@ -17,7 +17,9 @@
 ##### **lane_detection && steering && stop**
         ros2 run lane_hough scan  
 
+  
 
+  *hint : setup.py
 ---
 ### for teensy (6번 차량)
 
@@ -33,7 +35,9 @@
 ##### **lane_detection && steering && stop**
         ros2 run lane_hough scan          
 
- 
+  
+
+    *hint : setup.py
 ---
 
 
