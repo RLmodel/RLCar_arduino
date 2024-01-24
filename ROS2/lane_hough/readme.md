@@ -37,7 +37,7 @@
 
   
 
-    *hint : setup.py
+  *hint : setup.py
 ---
 
 
