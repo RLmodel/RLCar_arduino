@@ -55,7 +55,7 @@
 
      $ pip install opencv-python     
 
-$ pip install pyserial
+    $ pip install pyserial    
 
 
 ### etc 
