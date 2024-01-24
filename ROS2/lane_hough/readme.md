@@ -53,7 +53,7 @@
 
 ### dependency
 
-     $ pip install opencv-python     
+$ pip install opencv-python
 
     $ pip install pyserial    
 
