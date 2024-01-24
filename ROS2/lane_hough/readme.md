@@ -22,7 +22,7 @@
 ### for aruduino
 
 ##### **camera(for image_tools)**
-  ros2 run image_tools cam2image  
+          ros2 run image_tools cam2image          
 ##### **camera(for usb_cam)**
   ros2 run usb_cam usb_cam_node_exe          
 ##### **rplidar_ros**
