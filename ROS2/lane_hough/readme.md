@@ -53,14 +53,14 @@
 
 ### dependency
 
-    $ pip install opencv-python
+    pip install opencv-python
 
-    $ pip install pyserial
+    pip install pyserial
 
 
 ### etc 
 
-    $ ls /dev/ttyUSB*    
+    ls /dev/ttyUSB*    
 
 
 
@@ -68,5 +68,5 @@
 
 + for labtop users
 
-$ ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ~/ros2_ws/src/usb_cam/config/params_1.yaml
+    ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ~/ros2_ws/src/usb_cam/config/params_1.yaml
 
