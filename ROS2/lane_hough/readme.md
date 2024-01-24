@@ -21,17 +21,15 @@
 
 ### for aruduino
 
-
- $ ros2 run image_tools cam2image                (for image_tools)
-
-               or
-
+##### **camera(for image_tools)**
+ $ ros2 run image_tools cam2image
+##### **camera(for usb_cam)**
  $ ros2 run usb_cam usb_cam_node_exe             (for usb_cam)
-
+##### **rplidar_ros**
  $ ros2 launch rplidar_ros rplidar_a2m8_launch.py
-
+##### **serial**
  $ ros2 run lane_hough serial
-
+##### **lane_detection && steering && stop**
  $ ros2 run lane_hough scan
 
 
