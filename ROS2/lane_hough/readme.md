@@ -1,7 +1,7 @@
 # **hough transform (canny)**
 
 
-# for teensy
+### for teensy
 
 ---
 
@@ -19,7 +19,7 @@
 ---
 
 
-# for aruduino
+### for aruduino
 
 
  $ ros2 run image_tools cam2image                (for image_tools)
@@ -38,14 +38,14 @@
 ---
 
 
-## dependency
+### dependency
 
 $ pip install opencv-python
 
 $ pip install pyserial
 
 
-## etc 
+### etc 
 
 $ ls /dev/ttyUSB*    
 
