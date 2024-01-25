@@ -68,6 +68,7 @@ lane_check.py  && lane_scan.py && lane_scan_30.py 코드 부분 중 " #p " 로 �
     ls /dev/ttyUSB*    
 
 
+해당 커맨드로 아두이노 시리얼포트를 찾고 lane_serial.py 부분의 "/dev/ttyUSB1" 부분을 수정해주시면 됩니다.
 
 
 
