@@ -14,27 +14,29 @@ class Serial(Node):
         super().__init__('Serial')
         
         self.sub_cmd = self.create_subscription(Twist,'/cmd_vel', self.serial_callback, 10) 
-
-        global ser
-        ser = serial.Serial("/dev/ttyUSB1", 115200)        # ls /dev/ttyUSB*
+        self.ser = serial.Serial("/dev/ttyUSB1", 115200)        # ls /dev/ttyUSB*
         self.op = 0
-
 
         self.get_logger().info('==== Lane_detection Started ====\n')
         
 
     def serial_callback(self, data):
         
-        print(self.sub_cmd.msg_type)
-        a = 100*data.linear.x       # linear.x = 0.5 == str(50)
-        b = 2*data.angular.z       # linear.z = 0.5 == str(10)
-        #print(a)
-        #print(b)
-           
-        self.op = str(a)+"," + str(30+b)+",g,0,test_message &"
-        op = self.op
-        #print(op)
-        ser.write(op.encode())
+        ser = self.ser
+        #print(self.sub_cmd.msg_type)
+        a = 220*data.linear.x       
+        b = 20*data.angular.z       
+        if b < 0:
+            b += 13
+
+        if a >= 0:
+            self.op = str(abs(a))+"," + str(38-b)+",g,0,test_message &"
+        
+        elif a < 0:
+            self.op = str(abs(a))+"," + str(38-b)+",b,0,test_message &"
+            
+        
+        ser.write(self.op.encode())
 
 def main(args=None):
     rclpy.init(args=args)
