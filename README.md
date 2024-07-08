@@ -16,5 +16,5 @@
 
 [launch]
     
-  ros2 launch joystick_py joy_to_cmd.launch.py
+    ros2 launch joystick_py joy_to_cmd.launch.py
 
