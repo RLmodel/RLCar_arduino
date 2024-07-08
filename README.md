@@ -2,6 +2,7 @@
 
 
 [Terminal 1]
+
   ros2 run turtlesim turtlesim_node
 
 [Terminal 2]
