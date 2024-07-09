@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Test Command
 
 ## 개별 실행
