@@ -13,6 +13,7 @@ def generate_launch_description():
             package='joystick_py',
             executable='joy_0709',
             # name='JoyToCmd1',
+            emulate_tty=True,
             remappings=[('cmd_vel', 'turtle1/cmd_vel')]
     )
 
