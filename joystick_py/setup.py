@@ -23,9 +23,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'joy_test=joystick_py.joy_node:main',
-            'joy_to_cmd=joystick_py.joy_KSY:main',
-            'joy_0709=joystick_py.joy_0709:main'
+            #'joy_test=joystick_py.joy_node:main',
+            #'joy_to_cmd=joystick_py.joy_KSY:main',
+            'joy_0709=joystick_py.joy_0709:main',
         ],
     },
 )
