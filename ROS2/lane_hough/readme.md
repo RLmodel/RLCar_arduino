@@ -8,31 +8,46 @@
 
     ros2 launch lane_hough lane_follow.launch.py
 
-    
-카메라는 아래 두 커맨드 중 각 차량에 맞게 한 개만 실행합니다. 
 
-(총 1개 터미널 사용)
+차량 별로 사용하는 카메라 패키지가 있습니다. ( image_tools && usb_cam )
 
-차선인식 커맨드 실행 시 초기에 차선을 구분하지 못하면 해당 노드가 종료됩니다.
+
+다음과 같이 launch file에서 해당 차량에 맞는 노드를 활성화 시켜주면 됩니다.
+
+
+< image_tools 패키지 활성화 >  # usb_cam 노드 비활성화
+
+![Screenshot from 2024-07-11 10-01-22](https://github.com/RLmodel/RLCar_arudino/assets/151706131/9d53dc0d-43d0-42f0-b965-dd4bc84b1f90)
+
+
+
+< usb_cam 패키지 활성화 >  # image_tools 노드 비활성화
+![Screenshot from 2024-07-11 10-00-56](https://github.com/RLmodel/RLCar_arudino/assets/151706131/96a495ed-cd80-49ec-8397-424c15fa77a9)
+
+
+
+
+***주의*** 차선인식 커맨드 실행 시 초기에 차선을 구분하지 못하면 해당 노드가 종료됩니다.
 
 (초기 실행 시 카메라 조정 필요)
 
 
-lane_check.py  && lane_scan.py && lane_scan_30.py 코드 부분 중 " #p " 로 주석처리 된 부분이 조정해야 할 부분입니다.
-
-적절한 값을 찾아서 넣어주시면 됩니다.
 
 
 
 
 ##### **camera(for image_tools)**
     ros2 run image_tools cam2image 
+    
 ##### **camera(for usb_cam)**
-    ros2 run usb_cam usb_cam_node_exe     
+    ros2 run usb_cam usb_cam_node_exe
+    
 ##### **rplidar_ros**
     ros2 launch rplidar_ros rplidar_a2m8_launch.py
+    
 ##### **serial**
     ros2 run lane_hough serial
+    
 ##### **lane_detection && steering && stop**
     ros2 run lane_hough scan
 
