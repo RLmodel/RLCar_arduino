@@ -20,7 +20,7 @@
 다음과 같이 launch file에서 해당 차량에 맞는 노드를 활성화 시켜주면 됩니다.
 &emsp;
 
-< image_tools 패키지 활성화 >  &emsp; # usb_cam 노드 비활성화 >
+< image_tools 패키지 활성화 >  &emsp; # usb_cam 노드 비활성화 
 
 &emsp;
 ![Screenshot from 2024-07-11 10-01-22](https://github.com/RLmodel/RLCar_arudino/assets/151706131/9d53dc0d-43d0-42f0-b965-dd4bc84b1f90)
@@ -28,7 +28,7 @@
 &emsp;
 &emsp;
 
-< usb_cam 패키지 활성화 >  &emsp; # image_tools 노드 비활성화 >
+< usb_cam 패키지 활성화 >  &emsp; # image_tools 노드 비활성화 
 
 &emsp;
 ![Screenshot from 2024-07-11 10-00-56](https://github.com/RLmodel/RLCar_arudino/assets/151706131/96a495ed-cd80-49ec-8397-424c15fa77a9)
