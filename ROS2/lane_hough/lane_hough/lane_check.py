@@ -22,11 +22,11 @@ class ImageSubscriber(Node):
         
         super().__init__('image_subscriber')
         self.br = CvBridge()
-        self.subimg = self.create_subscription(Image, '/image', self.img_callback, 10)        #for image_tools
-        #self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
+        #self.subimg = self.create_subscription(Image, '/image', self.img_callback, 10)        #for #image_tools
+        self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for #usb_cam
         self.steering = self.create_publisher(Twist, '/cmd_vel', 10)
         
-        timer_period = 1    #p
+        timer_period = 0.5    #p
         self.timer = self.create_timer(timer_period, self.steering_callback)
         
         self.error=0
@@ -43,26 +43,26 @@ class ImageSubscriber(Node):
         
 
     def steering_callback(self):
-        error = self.error*1.0                  #p
+        error = self.error                 #p
         twist_msg = Twist()
         print(f'lnum = {error}')
         print(f'rnum = {error}') 
 
         if error > 4:                           #p
             print(f' == right == :  {error}')
-            twist_msg.linear.x = 0.3            #p
+            twist_msg.linear.x = 0.5            #p
             twist_msg.angular.z = float(error)  
             self.steering.publish(twist_msg)
 
         elif error < -4:                        #P
             print(f' == left == :  {error}')
-            twist_msg.linear.x = 0.3            #p
+            twist_msg.linear.x = 0.5            #p
             twist_msg.angular.z = float(error)  
             self.steering.publish(twist_msg)
 
         else:                                   
             print(f' == straight == :  {error}')
-            twist_msg.linear.x = 0.3            #p
+            twist_msg.linear.x = 0.5            #p
             twist_msg.angular.z = 0.0
             self.steering.publish(twist_msg)
 
@@ -87,7 +87,7 @@ def process_frame(frame):
 
     # 노란색 차선을 위한 HSV 범위 설정
     lower_yellow = np.array([20, 100, 100], dtype=np.uint8)
-    upper_yellow = np.array([30, 255, 255], dtype=np.uint8)
+    upper_yellow = np.array([35, 255, 255], dtype=np.uint8)
 
     # 노란색 차선을 마스크로 추출
     yellow_mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
@@ -145,8 +145,8 @@ def draw_lines(frame, lines):
     #print('lnum : ',lnum)
 
     # 왼쪽 차선과 오른쪽 차선을 각각 그리기
-    # draw_line_segments(frame, left_lines, color=(0, 255, 0))
-    # draw_line_segments(frame, right_lines, color=(0, 0, 255))
+    draw_line_segments(frame, left_lines, color=(0, 255, 0))
+    draw_line_segments(frame, right_lines, color=(0, 0, 255))
 
     # 중앙선 계산 및 표시
     center_line = calculate_center_line(left_lines, right_lines)

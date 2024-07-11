@@ -3,7 +3,7 @@
 # Author:
 # - RLmodel ybbaek
 # - https://www.rlmodel.com
-  
+
 # Import the necessary libraries
 import rclpy # Python library for ROS 2
 from rclpy.node import Node # Handles the creation of nodes
@@ -22,19 +22,31 @@ class ImageSubscriber(Node):
         
         super().__init__('image_subscriber')
         self.br = CvBridge()
-        self.subimg = self.create_subscription(Image, '/image', self.img_callback, 10)        #for image_tools
-        #self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
+
+        self.declare_parameter("velocity", 0.5)
+        self.velocity = self.get_parameter("velocity").get_parameter_value().double_value
+        self.get_logger().info("cmd_vel : %2f" % self.velocity)
+        self.declare_parameter("steering", 0.78)
+        self.error_weight = self.get_parameter("steering").get_parameter_value().double_value
+        self.get_logger().info("steering : %2f" % self.error_weight)
         
+        is_image_tools = self.declare_parameter("is_image_tools", True)
+        if is_image_tools == True:
+            self.subimg = self.create_subscription(Image, '/image', self.img_callback, 10)        #for image_tools
+            self.get_logger().info('web_cam package : image_tools')
+        else:
+            self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
+            self.get_logger().info('web_cam package : usb_cam')
+
         self.subscan = self.create_subscription(LaserScan, '/scan', self.steering_callback, 10)
         self.steering = self.create_publisher(Twist, '/cmd_vel', 10)
         
         #timer_period = 1   #p
         #self.timer = self.create_timer(timer_period, self.steering_callback)
 
-        #self.subscan
         self.steering
         self.error=0
-    
+
     def img_callback(self, data):
         
         current_frame = self.br.imgmsg_to_cv2(data, desired_encoding='bgr8')
@@ -51,7 +63,7 @@ class ImageSubscriber(Node):
         len_left15 = msg.ranges[45]              # 15 degree (left)  
         len_right15 = msg.ranges[1035]           # 15 degree (right)
    
-        error = self.error*0.78                      #p
+        error = self.error*self.error_weight                      #p
         twist_msg = Twist()
         #print(f'lnum = {error}')
         #print(f'rnum = {error}')
@@ -62,12 +74,12 @@ class ImageSubscriber(Node):
         if error > 4:                                #p
             if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):                
                 #print(f' == right == :  {error}')
-                twist_msg.linear.x = 0.35            #p
+                twist_msg.linear.x = self.velocity            #p
                 twist_msg.angular.z = float(error)  
                 self.steering.publish(twist_msg)
             else:
                 twist_msg.linear.x = 0.0
-        
+
                 self.steering.publish(twist_msg)
                 
         
@@ -76,7 +88,7 @@ class ImageSubscriber(Node):
             if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):   
             
                 #print(f' == left == :  {error}')
-                twist_msg.linear.x = 0.35            #p
+                twist_msg.linear.x = self.velocity            #p
                 twist_msg.angular.z = float(error)  
                 self.steering.publish(twist_msg)
             
@@ -87,7 +99,7 @@ class ImageSubscriber(Node):
         else:     
             if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):                           
                 #print(f' == straight == :  {error}')
-                twist_msg.linear.x = 0.35            #p
+                twist_msg.linear.x = self.velocity            #p
                 twist_msg.angular.z = 0.0
                 self.steering.publish(twist_msg)
             

@@ -1,4 +1,6 @@
 from setuptools import setup
+import os
+from glob import glob
 
 package_name = 'lane_hough'
 
@@ -10,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*')))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -24,7 +27,6 @@ setup(
         'serial = lane_hough.lane_serial:main',
         'scan = lane_hough.lane_scan:main',
         'scan30 = lane_hough.lane_scan_30:main',
-        
         ],
     },
 )

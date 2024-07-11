@@ -102,21 +102,21 @@ class Lane(Node):
         
         if Sx > 4:
             self.get_logger().info(f'==== right ==== : {err}')
-            twist_msg.linear.x = 0.3
+            twist_msg.linear.x = 0.9
             twist_msg.angular.z = float(err)
             self.steering.publish(twist_msg)
             #print(twist_msg)
             
         elif Sx < -4:
             self.get_logger().info(f'==== left ==== : {err}')
-            twist_msg.linear.x = 0.3
+            twist_msg.linear.x = 0.9
             twist_msg.angular.z = float(err)
             self.steering.publish(twist_msg) 
             #print(twist_msg)
             
         else:
             self.get_logger().info(f'==== straight ==== : {err}')
-            twist_msg.linear.x = 0.5
+            twist_msg.linear.x = 1.2
             twist_msg.angular.z = 0.0
             self.steering.publish(twist_msg)
             #print(twist_msg)

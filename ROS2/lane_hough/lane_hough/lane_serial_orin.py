@@ -16,7 +16,7 @@ class Serial(Node):
         self.sub_cmd = self.create_subscription(Twist,'/cmd_vel', self.serial_callback, 10) 
 
         global ser
-        ser = serial.Serial("/dev/ttyUSB1", 115200)        # ls /dev/ttyUSB*
+        ser = serial.Serial("/dev/ttyNANO", 115200)        # ls /dev/ttyUSB*
         self.op = 0
 
 
@@ -27,10 +27,10 @@ class Serial(Node):
         
         print(self.sub_cmd.msg_type)
         a = 100*data.linear.x       # linear.x = 0.5 == str(50)
-        b = 2*data.angular.z       # linear.z = 0.5 == str(10)
+        b = 20*data.angular.z       # linear.z = 0.5 == str(10)
         #print(a)
         #print(b)
-           
+
         self.op = str(a)+"," + str(30+b)+",g,0,test_message &"
         op = self.op
         #print(op)
