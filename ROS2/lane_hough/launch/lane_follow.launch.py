@@ -21,7 +21,7 @@ def generate_launch_description():
         name='usb_cam',
         output='log',
         parameters=[{
-            'video_device' : '/dev/video4'   # 외부 카메라 사용 시, 또는 /dev/video 인식 오류 시 수정
+            'video_device' : '/dev/video0'   # 외부 카메라 사용 시, 또는 /dev/video 인식 오류 시 수정
         }]
     )
     
@@ -46,12 +46,14 @@ def generate_launch_description():
         name='scan',
         output='log',
         parameters=[{
-            'is_image_tools' : False,    # image_tools 사용시 True, usb_cam 사용시 False 
+            'is_image_tools' : False,   # image_tools 사용시 True, usb_cam 사용시 False 
 
             'velocity': 0.9,            # Min(0.0) ~ Max(2.0) , 
                                         # 차량마다 모터가 구동될 수 있도록 하는 최소 파라미터가 다르므로
                                         # 모터가 작동하지 않을 시에 값을 키우면서 파라미터를 찾으시면 됩니다.
-            'steering' : 0.78,          
+
+            'steering' : 0.7,           # 조향에 대한 파라미터입니다. 값이 작을수록 적게 조향되고 클수록 많이 조향됩니다. 
+                                        # (0.2 ~ 1.5) 사이에서 조정하시는 것을 권장드립니다.
         }])
     
     return LaunchDescription([
