@@ -44,13 +44,12 @@
 
 &emsp;
 &emsp;
+
 velocity 와 steering 값을 조정해서 트랙을 가장 안정적으로 돌 수 있는 값을 찾아주시면 됩니다.
 
 &emsp;
 
-ex) 'velocity': 0.9
-&emsp;
-
+ex) 'velocity': 0.0
 ex) 'steering': 0.7
 
 
