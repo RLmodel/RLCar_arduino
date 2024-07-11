@@ -1,8 +1,8 @@
 # **hough transform (canny)**
 
 ---
+### 실행방법
 
-### for aruduino (6번 차량 외)
 
 터미널에 아래 명령어를 통해 launch file을 실행할 수 있습니다.
 
@@ -17,6 +17,9 @@
 
 < image_tools 패키지 활성화 >  # usb_cam 노드 비활성화
 
+
+
+    
 ![Screenshot from 2024-07-11 10-01-22](https://github.com/RLmodel/RLCar_arudino/assets/151706131/9d53dc0d-43d0-42f0-b965-dd4bc84b1f90)
 
 
@@ -42,7 +45,7 @@
 --- 
 ## 개별 실행
 
-### for arduino
+### for aruduino (6번 차량 외)
 
 
 
