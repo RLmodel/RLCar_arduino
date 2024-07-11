@@ -8,7 +8,6 @@
 &emsp;
 
 터미널에 아래 명령어를 통해 launch file을 실행할 수 있습니다.
-
 &emsp;
 
     ros2 launch lane_hough lane_follow.launch.py
