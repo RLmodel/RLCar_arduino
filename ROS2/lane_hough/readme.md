@@ -14,7 +14,7 @@
     
 &emsp;
 
-차량 별로 사용하는 카메라 패키지가 있습니다. &emsp; ( image_tools && usb_cam )
+먼저 차량 별로 사용하는 카메라 패키지가 있습니다. &emsp; ( image_tools && usb_cam )
 &emsp;
 
 다음과 같이 launch file에서 해당 차량에 맞는 노드를 활성화 시켜주면 됩니다.
