@@ -45,6 +45,7 @@
 ***Tip*** &emsp;간단한 수정을 통해 더 나은 성능을 보일 수 있는 부분이 있습니다. 여러분들께서 찾아서 수정해주시면 됩니다.
 
 *hint* : setup.py
+
 *hint* : lane_follow.launch.py
 
 
