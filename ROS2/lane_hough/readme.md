@@ -9,12 +9,17 @@
 터미널에 아래 명령어를 통해 launch file을 실행할 수 있습니다.
 
 &emsp;
+
     ros2 launch lane_hough lane_follow.launch.py
+    
 &emsp;
+
 차량 별로 사용하는 카메라 패키지가 있습니다. ( image_tools && usb_cam )
 &emsp;
+
 다음과 같이 launch file에서 해당 차량에 맞는 노드를 활성화 시켜주면 됩니다.
 &emsp;
+
 < image_tools 패키지 활성화 >  # usb_cam 노드 비활성화
 &emsp;
 ![Screenshot from 2024-07-11 10-01-22](https://github.com/RLmodel/RLCar_arudino/assets/151706131/9d53dc0d-43d0-42f0-b965-dd4bc84b1f90)
