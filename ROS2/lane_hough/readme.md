@@ -33,7 +33,23 @@
 &emsp;
 ![Screenshot from 2024-07-11 10-00-56](https://github.com/RLmodel/RLCar_arudino/assets/151706131/96a495ed-cd80-49ec-8397-424c15fa77a9)
 
+&emsp;
+&emsp;
 
+
+
+
+다음은 여러분들이 수정할 파라미터입니다.
+
+&emsp;
+![Screenshot from 2024-07-11 12-55-41](https://github.com/RLmodel/RLCar_arudino/assets/151706131/50d2e808-9c2d-43e9-b4f2-613b4d5a52c2)
+
+&emsp;
+&emsp;
+velocity 와 steering 값을 조정해서 트랙을 가장 안정적으로 돌 수 있는 값을 찾아주시면 됩니다.
+
+ex) 'velocity': 0.9
+ex) 'steering': 0.7
 
 
 ***주의*** &emsp;차선인식 커맨드 실행 시 초기에 차선을 구분하지 못하면 해당 노드가 종료됩니다.
