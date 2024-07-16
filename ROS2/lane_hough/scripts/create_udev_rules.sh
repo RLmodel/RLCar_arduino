@@ -10,9 +10,9 @@ then
 	#rm -rf /etc/udev/rules.d/src_udev.rules
 fi
 
-sudo cp 99-src_udev.rules /etc/udev/rules.d
+sudo cp src_udev.rules /etc/udev/rules.d/src_udev.rules
 echo " "
 echo "reload udev rules"
-sudo udevadm control --reload-rules && udevadm trigger
+sudo udevadm control --reload-rules && sudo udevadm trigger
 echo "udev rules reload done"
 echo "finish "
