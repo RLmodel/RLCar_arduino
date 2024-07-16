@@ -30,12 +30,14 @@ class ImageSubscriber(Node):
         self.error_weight = self.get_parameter("steering").get_parameter_value().double_value
         self.get_logger().info("steering : %2f" % self.error_weight)
         
-        is_image_tools = self.declare_parameter("is_image_tools", True)
+        self.declare_parameter("is_image_tools", True)
+        is_image_tools = self.get_parameter("is_image_tools").get_parameter_value().bool_value
+        
         if is_image_tools == True:
-            self.subimg = self.create_subscription(Image, '/image', self.img_callback, 10)        #for image_tools
+            self.subimg = self.create_subscription(Image, '/camera/color/image_raw', self.img_callback, 10)        #for image_tools
             self.get_logger().info('web_cam package : image_tools')
         else:
-            self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
+            self.subimg = self.create_subscription(Image,'/camera/color/image_raw', self.img_callback, 10)    #for usb_cam
             self.get_logger().info('web_cam package : usb_cam')
 
         self.subscan = self.create_subscription(LaserScan, '/scan', self.steering_callback, 10)
