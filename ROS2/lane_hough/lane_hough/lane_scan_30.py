@@ -198,12 +198,20 @@ def draw_lines(frame, lines):
     cv2.line(frame, center_line[0], center_line[1], (255, 255, 255), 2)
 
 
+    # if lnum-rnum < -4:
+    #     leftright = "Right"
+    # elif lnum-rnum > 4:
+    #     leftright = "Left"
+    # else:
+    #     leftright = "Straight"
+
     if lnum-rnum < -4:
-        leftright = "Right"
+        leftright = "LEFT"
     elif lnum-rnum > 4:
-        leftright = "Left"
+        leftright = "RIGHT"
     else:
         leftright = "Straight"
+
 
     # 픽셀 값 출력
     # pixel_value = calculate_pixel_value(frame, center_line)
