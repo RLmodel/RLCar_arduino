@@ -197,9 +197,20 @@ def draw_lines(frame, lines):
     center_line = calculate_center_line(left_lines, right_lines)
     cv2.line(frame, center_line[0], center_line[1], (255, 255, 255), 2)
 
+
+    if lnum-rnum < -4:
+        leftright = "Right"
+    elif lnum-rnum > 4:
+        leftright = "Left"
+    else:
+        leftright = "Straight"
+
     # 픽셀 값 출력
-    pixel_value = calculate_pixel_value(frame, center_line)
-    cv2.putText(frame, f"Pixel Value: {pixel_value}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    # pixel_value = calculate_pixel_value(frame, center_line)
+    # cv2.putText(frame, f"Pixel Value: {pixel_value}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    cv2.putText(frame, f":steer: {leftright}", (200, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (100, 200, 100), 2)
+    cv2.putText(frame, f":Left detected: {lnum}", (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (100, 100, 200), 2)
+    cv2.putText(frame, f":Right detected: {rnum}", (400, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (200, 100, 100), 2)
 
 def draw_line_segments(frame, lines, color):
     for line in lines:

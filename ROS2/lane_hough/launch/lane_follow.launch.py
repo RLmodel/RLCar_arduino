@@ -5,7 +5,6 @@ from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription
-import time
 
 def generate_launch_description():
                 
@@ -45,9 +44,7 @@ def generate_launch_description():
         executable='serial',
         name='serial',
         output='log',
-        parameters=[{
-
-        }])
+    )
     
     lane_node = Node(
         package='lane_hough',
@@ -57,11 +54,13 @@ def generate_launch_description():
         parameters=[{
             'is_image_tools' : True,   # image_tools 사용시 True, usb_cam 사용시 False 
 
-            'velocity': 0.6,            # Min(0.0) ~ Max(2.0) , 
+            'velocity': 0.6,            
+                                        # Min(0.0) ~ Max(2.0) , 
                                         # 차량마다 모터가 구동될 수 있도록 하는 최소 파라미터가 다르므로
                                         # 모터가 작동하지 않을 시에 값을 키우면서 파라미터를 찾으시면 됩니다.
 
-            'steering' : 0.7,           # 조향에 대한 파라미터입니다. 값이 작을수록 적게 조향되고 클수록 많이 조향됩니다. 
+            'steering' : 0.7,           
+                                        # 조향에 대한 파라미터입니다. 값이 작을수록 적게 조향되고 클수록 많이 조향됩니다. 
                                         # (0.2 ~ 1.5) 사이에서 조정하시는 것을 권장드립니다.
         }])
 
