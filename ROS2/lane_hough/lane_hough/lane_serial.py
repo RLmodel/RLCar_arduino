@@ -30,10 +30,10 @@ class Serial(Node):
         #     b += 13
         
         if a >= 0:
-            self.op = str(abs(a))+"," + str(32-b)+",g,0,test_message &"
+            self.op = str(abs(a))+"," + str(32+b)+",g,0,test_message &"
         
         elif a < 0:
-            self.op = str(abs(a))+"," + str(32-b)+",b,0,test_message &"
+            self.op = str(abs(a))+"," + str(32+b)+",b,0,test_message &"
             
         
         ser.write(self.op.encode())
