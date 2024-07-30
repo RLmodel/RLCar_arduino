@@ -38,7 +38,8 @@ class ImageSubscriber(Node):
         else:
             self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
             self.get_logger().info('web_cam package : usb_cam')
-
+        
+        self.get_logger().info('Scan only detect a single point in front of it')
         self.subscan = self.create_subscription(LaserScan, '/scan', self.steering_callback, 10)
         self.steering = self.create_publisher(Twist, '/cmd_vel', 10)
         

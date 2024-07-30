@@ -35,7 +35,7 @@ def generate_launch_description():
 
     rplidar_ros2_pkg = os.path.join(get_package_share_directory('rplidar_ros'))
     rplidar_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(rplidar_ros2_pkg, 'launch', "rplidar_a2m8_launch.py"))
+        PythonLaunchDescriptionSource(os.path.join(rplidar_ros2_pkg, 'launch', "rplidar_a2m12_launch.py"))
     )
     
     
@@ -48,13 +48,13 @@ def generate_launch_description():
     
     lane_node = Node(
         package='lane_hough',
-        executable='scan',
+        executable='scan30',
         name='scan',
         output='log',
         parameters=[{
             'is_image_tools' : True,   # image_tools 사용시 True, usb_cam 사용시 False 
 
-            'velocity': 0.55,            
+            'velocity': 0.4,            
                                         # Min(0.00) ~ Max(2.00) , 
                                         # 차량마다 모터가 구동될 수 있도록 하는 최소 파라미터가 다르므로
                                         # 모터가 작동하지 않을 시에 값을 키우면서 파라미터를 찾으시면 됩니다.

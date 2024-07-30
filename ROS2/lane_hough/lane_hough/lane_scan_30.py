@@ -40,9 +40,12 @@ class ImageSubscriber(Node):
             self.subimg = self.create_subscription(Image,'/image_raw', self.img_callback, 10)    #for usb_cam
             self.get_logger().info('web_cam package : usb_cam')
 
+        self.get_logger().info('Scan detect a wider range')
         self.subscan = self.create_subscription(LaserScan, '/scan', self.steering_callback, 10)
         self.steering = self.create_publisher(Twist, '/cmd_vel', 10)
         
+
+
         #timer_period = 1   #p
         #self.timer = self.create_timer(timer_period, self.steering_callback)
 
@@ -74,7 +77,7 @@ class ImageSubscriber(Node):
         print(f"right : {len_right15}")
         #print(msg.ranges[0:45] + msg.ranges[1035:1079])      
         if error > 4:                                #p
-            if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):                
+            if  all(value > 0.5 for value in msg.ranges[0:75] + msg.ranges[1724:1799]):                
                 #print(f' == right == :  {error}')
                 twist_msg.linear.x = self.velocity            #p
                 twist_msg.angular.z = float(error)  
@@ -87,7 +90,7 @@ class ImageSubscriber(Node):
         
 
         elif error < -4:                             #p         
-            if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):   
+            if  all(value > 0.5 for value in msg.ranges[0:75] + msg.ranges[1724:1799]):                   
             
                 #print(f' == left == :  {error}')
                 twist_msg.linear.x = self.velocity            #p
@@ -99,7 +102,7 @@ class ImageSubscriber(Node):
                 self.steering.publish(twist_msg)
 
         else:     
-            if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):                           
+            if  all(value > 0.5 for value in msg.ranges[0:75] + msg.ranges[1724:1799]):                                           
                 #print(f' == straight == :  {error}')
                 twist_msg.linear.x = self.velocity            #p
                 twist_msg.angular.z = 0.0

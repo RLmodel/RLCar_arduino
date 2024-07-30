@@ -24,16 +24,16 @@ class Serial(Node):
         
         ser = self.ser
         #print(self.sub_cmd.msg_type)
-        a = 200*data.linear.x       
+        a = 100*data.linear.x   # 100 for 12V // 200 for 5V      
         b = 20*data.angular.z       
         # if b < 0:
         #     b += 13
         
         if a >= 0:
-            self.op = str(abs(a))+"," + str(38+b)+",g,0,test_message &"
+            self.op = str(abs(a))+"," + str(22+b)+",g,0,test_message &"
         
         elif a < 0:
-            self.op = str(abs(a))+"," + str(38+b)+",b,0,test_message &"
+            self.op = str(abs(a))+"," + str(22+b)+",b,0,test_message &"
             
         
         ser.write(self.op.encode())
