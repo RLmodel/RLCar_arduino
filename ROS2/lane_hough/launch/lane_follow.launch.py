@@ -48,7 +48,7 @@ def generate_launch_description():
     
     lane_node = Node(
         package='lane_hough',
-        executable='scan30',
+        executable='scan',
         name='scan',
         output='log',
         parameters=[{
