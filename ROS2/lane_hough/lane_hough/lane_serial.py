@@ -16,7 +16,7 @@ class Serial(Node):
         self.sub_cmd = self.create_subscription(Twist,'/cmd_vel', self.serial_callback, 10) 
         self.ser = serial.Serial("/dev/ttyNANO", 115200)        # ls /dev/ttyUSB*
         self.op = 0
-
+        
         self.get_logger().info('==== Lane_detection Started ====\n')
         
 
