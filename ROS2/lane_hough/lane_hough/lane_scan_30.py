@@ -58,7 +58,12 @@ class ImageSubscriber(Node):
         cv2.imshow("camera", result) 
         cv2.waitKey(2)
         
-        self.error = lnum-rnum  # left_line num - right_line num   #p
+        try:
+            self.error = lnum-rnum  # left_line num - right_line num   #p
+        except NameError:
+            self.error = 0
+            # self.get_logger().info("can't detect lane")
+
         
 
     def steering_callback(self, msg):
