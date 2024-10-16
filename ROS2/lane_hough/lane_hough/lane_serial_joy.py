@@ -18,6 +18,7 @@ def connect_serial(port, baudrate:int = 115200)-> serial.Serial:
         try: 
             ser = serial.Serial(port, baudrate)
             print("Serial connection Succeed")
+            
             return ser
         except serial.SerialException:
             if count > 9:
@@ -46,6 +47,7 @@ class Serial(Node):
         
         
         self.ser = connect_serial(self.port_name_)
+
         time.sleep(2)
         self.init_steer()
 
@@ -63,7 +65,7 @@ class Serial(Node):
         # else:
         #     self.get_logger().error("Port is not connnected")
         #     return 0
-
+    
         self.op = 0
         self.get_logger().info("Serial connected, port name : {}".format(self.port_name_))
         
@@ -76,7 +78,7 @@ class Serial(Node):
         self.op = str(0)+"," + str(22)+",g,0,test_message &"
         self.ser.write(self.op.encode())
         self.get_logger().info("init steer done")
-            
+
     def serial_callback(self, data):
         
         #print(self.sub_cmd.msg_type)
@@ -86,10 +88,10 @@ class Serial(Node):
         #     b += 13
         
         if a >= 0:
-            self.op = str(abs(a))+"," + str(22+b)+",g,0,test_message &"
+            self.op = str(abs(a))+"," + str(22-b)+",g,0,test_message &"
         
         elif a < 0:
-            self.op = str(abs(a))+"," + str(22+b)+",b,0,test_message &"
+            self.op = str(abs(a))+"," + str(22-b)+",b,0,test_message &"
         
 
         if is_connected(self.ser):

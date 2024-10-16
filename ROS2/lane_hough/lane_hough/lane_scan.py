@@ -15,6 +15,7 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
 
+
 class ImageSubscriber(Node):
     
     def __init__(self):
@@ -49,7 +50,7 @@ class ImageSubscriber(Node):
         #self.subscan
         self.steering
         self.error=0
-
+        
     def img_callback(self, data):
         
         current_frame = self.br.imgmsg_to_cv2(data, desired_encoding='bgr8')
@@ -57,12 +58,19 @@ class ImageSubscriber(Node):
         result = process_frame(gray)
         cv2.imshow("camera", result) 
         cv2.waitKey(2)
+
+        try:
+            self.error = lnum-rnum  # left_line num - right_line num   #p
+        except NameError:
+            self.error = 0
+            # self.get_logger().info("can't detect lane")
         
-        self.error = lnum-rnum  # left_line num - right_line num   #p
+            
         
 
     def steering_callback(self, msg):
         len_front = msg.ranges[0]               # degree(0 ~ 359) == ranges[0 ~ 1079]
+        
         error = self.error*self.error_weight                  #p
         twist_msg = Twist()
         #print(f'lnum = {error}')

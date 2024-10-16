@@ -11,31 +11,31 @@ def generate_launch_description():
 
     ## image_tools 사용시 활성화
 
-    cam_node = ExecuteProcess(
-        cmd=[[
-            "ros2 run image_tools cam2image ",
-            "--ros-args --log-level ",
-            "error"
-        ]], 
-        shell=True
-    )
+    # cam_node = ExecuteProcess(
+    #     cmd=[[
+    #         "ros2 run image_tools cam2image ",
+    #         "--ros-args --log-level ",
+    #         "error"
+    #     ]], 
+    #     shell=True
+    # )
     
     ## usb_cam 사용시 활성화
 
-    # cam_node = Node(                
-    #     package='usb_cam',
-    #     executable='usb_cam_node_exe',
-    #     name='usb_cam',
-    #     output='log',
-    #     parameters=[{
-    #         'video_device' : '/dev/video0'   # 외부 카메라 사용 시, 또는 /dev/video 인식 오류 시 수정
-    #     }]
-    # )
+    cam_node = Node(                
+        package='usb_cam',
+        executable='usb_cam_node_exe',
+        name='usb_cam',
+        output='log',
+        parameters=[{
+            'video_device' : '/dev/video0'   # 외부 카메라 사용 시, 또는 /dev/video 인식 오류 시 수정
+        }]
+    )
     
 
     rplidar_ros2_pkg = os.path.join(get_package_share_directory('rplidar_ros'))
     rplidar_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(rplidar_ros2_pkg, 'launch', "rplidar_a2m8_launch.py"))
+        PythonLaunchDescriptionSource(os.path.join(rplidar_ros2_pkg, 'launch', "rplidar_c1_launch.py"))
     )
     
     
@@ -52,7 +52,7 @@ def generate_launch_description():
         name='scan',
         output='log',
         parameters=[{
-            'is_image_tools' : True,   # image_tools 사용시 True, usb_cam 사용시 False 
+            'is_image_tools' : False,   # image_tools 사용시 True, usb_cam 사용시 False 
 
             'velocity': 0.55,            
                                         # Min(0.00) ~ Max(2.00) , 

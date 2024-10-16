@@ -27,6 +27,7 @@ setup(
         'serial = lane_hough.lane_serial:main',
         'scan = lane_hough.lane_scan:main',
         'scan30 = lane_hough.lane_scan_30:main',
+        'serial_joy = lane_hough.lane_serial_joy:main',
         ],
     },
 )
