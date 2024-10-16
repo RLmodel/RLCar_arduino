@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type = Application
+Encoding = UTF-8
+Name = Serial
+Comment = Arduino nano serial connection
+Exec= /bin/bash -c "/home/$USER/resources/serial_terminal.sh"
+Icon= /usr/share/icons/RLcar_doc/arduino.png
+Terminal = true
