@@ -1,4 +1,4 @@
-=======
+-----
 
 ### RLCar Setup && TroubleShooting
 
@@ -8,14 +8,14 @@ https://water-proof-well.notion.site/RLCar-940002adc09b47c3972652c1fdc5d4d6?pvs=
 
 <br/>
 
-=======
+-----
 
 ### Remove binary pkg && Install depenency pkg
 
 
 <br/>
 
-=======
+-----
 
 ```bash
 sudo apt remove brltty -y
@@ -30,6 +30,8 @@ pip install pyserial
 <br/>
 <br/>
 <br/>
+
+-----
 
 # RLCar_arduino
 RLCar arduino nano controller version example code sources
