@@ -1,6 +1,6 @@
 =======
 
-[RLCar Setup && TroubleShooting]
+### RLCar Setup && TroubleShooting
 
 <br/>
 
@@ -10,7 +10,7 @@ https://water-proof-well.notion.site/RLCar-940002adc09b47c3972652c1fdc5d4d6?pvs=
 
 =======
 
-[Remove binary pkg && Install depenency pkg]
+### Remove binary pkg && Install depenency pkg
 
 
 <br/>
