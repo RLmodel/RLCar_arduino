@@ -20,7 +20,7 @@ def generate_launch_description():
         'lane.yaml'
         )
         
-
+    
     cam_node = Node(                # usb_cam 사용시 활성화
         package='usb_cam',
         executable='usb_cam_node_exe',
@@ -33,7 +33,7 @@ def generate_launch_description():
     
     rplidar_ros2_pkg = os.path.join(get_package_share_directory('rplidar_ros'))
     rplidar_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(rplidar_ros2_pkg, 'launch', "rplidar_a2m8_launch.py"))
+        PythonLaunchDescriptionSource(os.path.join(rplidar_ros2_pkg, 'launch', "rplidar_c1_launch.py"))
     )
     
     joystick_pkg = os.path.join(get_package_share_directory('joystick_py'))
