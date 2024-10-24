@@ -2,7 +2,7 @@
 
 <br/>
 
-https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41dcb?pvs=4
+[RLCar aruino setup]https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41dcb?pvs=4
 
 <br/>
 
