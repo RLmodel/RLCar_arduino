@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type = Application
+Encoding = UTF-8
+Name = Joystick
+Comment = Joystick ROS2
+Exec= /bin/bash -c "/home/$USER/resources/joystick_terminal.sh"
+Icon= /usr/share/icons/RLcar_doc/joystick.png
+Terminal = true

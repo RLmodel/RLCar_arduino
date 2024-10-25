@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type = Application
+Encoding = UTF-8
+Name = Lane_follow
+Comment = ROS2 lane detection && following
+Exec= /bin/bash -c "/home/$USER/resources/lane_terminal.sh"
+Icon= /usr/share/icons/RLcar_doc/line_way.png
+Terminal = true
