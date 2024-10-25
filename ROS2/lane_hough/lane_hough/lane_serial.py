@@ -68,7 +68,7 @@ class Serial(Node):
         
 
     def __del__(self):
-        self.op = str(0)+"," + str(21)+",g,0,test_message &"
+        self.op = str(0)+"," + str(26)+",g,0,test_message &"
         self.ser.write(self.op.encode()) 
 
     def serial_callback(self, data):
@@ -76,14 +76,16 @@ class Serial(Node):
         #print(self.sub_cmd.msg_type)
         a = 200*data.linear.x       
         b = 20*data.angular.z       
-        # if b < 0:
-        #     b += 13
         
+        # prevent overflow
+        if b > 21:
+            b = 21
+
         if a >= 0:
-            self.op = str(abs(a))+"," + str(21-b)+",g,0,test_message &"
-        
+            self.op = str(abs(a))+"," + str(26-b)+",g,0,test_message &"
+
         elif a < 0:
-            self.op = str(abs(a))+"," + str(21-b)+",b,0,test_message &"
+            self.op = str(abs(a))+"," + str(26-b)+",b,0,test_message &"
         
         
         if is_connected(self.ser):
