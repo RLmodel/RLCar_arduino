@@ -6,6 +6,21 @@ https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41d
 
 -----
 
+### Check list
+
+<br/>
+
+- DOMAIN_ID
+- STATE CHANGE
+
+<br/>
+
+```bash
+ros2 launch lane_hough lane_state.launch.py
+```
+
+<br/>
+
 ### Remove binary pkg && Install depenency pkg
 
 <br/>
