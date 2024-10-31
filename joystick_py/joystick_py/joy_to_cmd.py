@@ -55,6 +55,7 @@ class JoyToCmd(Node):
         
         self.twist.linear.x = 0.0
         self.twist.angular.z = 0.0
+        self.max_linear_gain = 1.0
 
         self.state = StateMachine.JOY
         
@@ -121,7 +122,7 @@ class JoyToCmd(Node):
                 self.get_logger().info("Max_Speed : {0}".format(self.linear_speed_gain))
         
         if self.joy_keys.btn_RB and not self.prev_joy_keys.btn_RB:
-            if self.linear_speed_gain >= 1.5:
+            if self.linear_speed_gain >= self.max_linear_gain:
                 self.get_logger().warn("Max_speed can't surpass 3.0") 
             else:
                 self.linear_speed_gain += 0.125
@@ -129,13 +130,12 @@ class JoyToCmd(Node):
 
     def pub_twist_joy(self):
         
-        
         self.twist.linear.x = self.joy_keys.left_updown* self.linear_speed_gain
         self.twist.linear.y = 0.0
         self.twist.linear.z = 0.0
         
         self.twist.angular.z = self.joy_keys.right_leftright* self.angular_pose_gain
-
+        
         if self.state == StateMachine.JOY:
             self.cmd_vel_pub.publish(self.twist)
         else:
