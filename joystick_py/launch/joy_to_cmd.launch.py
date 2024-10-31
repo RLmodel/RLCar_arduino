@@ -11,15 +11,15 @@ def generate_launch_description():
     
     joystick_node = Node(
             package='joystick_py',
-            executable='joy_0709',
+            executable='joy_to_cmd',
             # name='JoyToCmd1',
             emulate_tty=True,
-            remappings=[('cmd_vel', 'turtle1/cmd_vel')]
+            output='screen',
+        #     remappings=[('cmd_vel', 'turtle1/cmd_vel')]
     )
 
 
     return LaunchDescription([
         joy_node,
         joystick_node
-
   ])
