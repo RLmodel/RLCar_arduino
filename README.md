@@ -20,6 +20,7 @@ git clone -b c1 https://github.com/RLmodel/RLCar_arduino.git
 - DOMAIN_ID
 - STATE CHANGE
 - logout github
+- delete history
 
 <br/>
 
