@@ -51,7 +51,7 @@ class Serial(Node):
         time.sleep(2)
 
         self.op = 0
-        self.allign = 27
+        self.align = 27
 
         self.get_logger().info("Serial connected, port name : {}".format(self.port_name_))
         
@@ -67,13 +67,13 @@ class Serial(Node):
         b = 20*data.angular.z       
         # if b < 0:
         #     b += 13
-        if b > self.allign:
-            b = self.allign
+        if b > self.align:
+            b = self.align
         if a >= 0:
-            self.op = str(abs(a))+"," + str(self.allign-b)+",g,0,test_message &"
+            self.op = str(abs(a))+"," + str(self.align-b)+",g,0,test_message &"
         
         elif a < 0:
-            self.op = str(abs(a))+"," + str(self.allign-b)+",b,0,test_message &"
+            self.op = str(abs(a))+"," + str(self.align-b)+",b,0,test_message &"
         
         # self.ser.write(self.op.encode())
         if is_connected(self.ser):
