@@ -10,6 +10,12 @@ https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41d
 
 <br/>
 
+```bash
+git clone -b c1 https://github.com/RLmodel/RLCar_arduino.git
+```
+
+<br/>
+
 - DOMAIN_ID
 - STATE CHANGE
 
