@@ -96,13 +96,12 @@ class ImageSubscriber(Node):
 
                     twist_msg.linear.x = self.velocity            
                     twist_msg.angular.z = float(error)  
-                    self.steering.publish(twist_msg)
+
                 else:
                     twist_msg.linear.x = 0.0
-                
 
             elif error < -4:                                     
-                if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):   
+                if  all(value > 0.5 for value in msg.ranges[0:30] + msg.ranges[690:718]):   
                     twist_msg.linear.x = self.velocity            
                     twist_msg.angular.z = float(error)  
  
@@ -110,7 +109,7 @@ class ImageSubscriber(Node):
                     twist_msg.linear.x = 0.0
    
             else:     
-                if  all(value > 0.5 for value in msg.ranges[0:45] + msg.ranges[1035:1079]):                           
+                if  all(value > 0.5 for value in msg.ranges[0:30] + msg.ranges[690:718]):                           
                     twist_msg.linear.x = self.velocity            
                     twist_msg.angular.z = 0.0
 

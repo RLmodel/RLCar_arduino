@@ -84,7 +84,7 @@ class ImageSubscriber(Node):
     def steering_callback(self, msg):
         if self.state == StateMachine.LANE:        
         
-            
+            # C1 forward points cause error [index 1~5 got noise]
             self.len_front = msg.ranges[6]               # degree(0 ~ 359) == ranges[0 ~ 719]
             
             error = self.error*self.error_weight                  
