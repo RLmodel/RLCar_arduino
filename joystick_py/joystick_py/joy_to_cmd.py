@@ -123,7 +123,7 @@ class JoyToCmd(Node):
         
         if self.joy_keys.btn_RB and not self.prev_joy_keys.btn_RB:
             if self.linear_speed_gain >= self.max_linear_gain:
-                self.get_logger().warn("Max_speed can't surpass 3.0") 
+                self.get_logger().warn("Max_speed can't surpass 1.0") 
             else:
                 self.linear_speed_gain += 0.125
                 self.get_logger().info("Max_Speed : {0}".format(self.linear_speed_gain))
