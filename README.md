@@ -6,27 +6,61 @@ https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41d
 
 -----
 
-### Check list
+<br/>
+
+
+move to ~/<workspace>/<Source Folder>
+
+```bash
+cd ~/ros2_ws/src
+```
 
 <br/>
+
+clone RLCar_arduino
 
 ```bash
 git clone https://github.com/RLmodel/RLCar_arduino.git
 ```
 
+<br/>
+
+clone rplidar c1 pkg
+
+```bash
+git clone -b ros2 https://github.com/Slamtec/rplidar_ros.git
+```
 
 <br/>
 
-- DOMAIN_ID
-- STATE CHANGE
-- logout github
-- delete history
+move to workspace && sourcing
+
+```bash
+cd ~/ros2_ws/
+humble
+```
 
 <br/>
+
+build && sourcing
+
+```bash
+cbp lane_hough
+cbp joystick_py
+cbp rplidar_ros
+humble
+```
+
+<br/>
+
+start driving
 
 ```bash
 ros2 launch lane_hough lane_state.launch.py
 ```
+
+
+---
 
 <br/>
 
