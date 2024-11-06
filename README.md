@@ -90,25 +90,6 @@ ros2 run lane_hough serial
 
 <br/>
 
-### Remove binary pkg && Install depenency pkg
-
-<br/>
-
-
-```bash
-sudo apt remove brltty -y
-```
-
-<br/>
-
-```bash
-pip install pyserial
-```
-
-<br/>
-<br/>
-<br/>
-
 -----
 
 # RLCar_arduino
