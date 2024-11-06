@@ -10,6 +10,9 @@ https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41d
 
 <br/>
 
+![joystick_manual](https://github.com/user-attachments/assets/0d52da52-795c-49db-9631-2bd5cd4621d7)
+
+<br/>
 
 move to ~/workspace/Source Folder
 
