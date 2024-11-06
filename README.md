@@ -6,6 +6,8 @@ https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41d
 
 -----
 
+## lane_dection && manaul state machine mode
+
 <br/>
 
 
@@ -60,7 +62,31 @@ ros2 launch lane_hough lane_state.launch.py
 ```
 
 
+<br/>
+
 ---
+## joystick control only (manual mode)
+
+<br/>
+
+[Teminal 1]
+
+<br/>
+
+```bash
+ros2 launch joystick_py joy_to_cmd.launch.py
+```
+
+```bash
+
+[Teminal 2]
+
+<br/>
+
+```bash
+ros2 run lane_hough serial
+```
+
 
 <br/>
 
