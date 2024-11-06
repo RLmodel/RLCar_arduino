@@ -77,7 +77,7 @@ ros2 launch lane_hough lane_state.launch.py
 ros2 launch joystick_py joy_to_cmd.launch.py
 ```
 
-```bash
+<br/>
 
 [Teminal 2]
 
