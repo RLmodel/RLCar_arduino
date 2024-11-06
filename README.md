@@ -9,7 +9,7 @@ https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41d
 <br/>
 
 
-move to ~/<<workspace>>/<<Source Folder>>
+move to ~/workspace/Source Folder
 
 ```bash
 cd ~/ros2_ws/src
