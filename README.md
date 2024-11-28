@@ -6,6 +6,46 @@ https://water-proof-well.notion.site/RLCar-HUMBLE-129c26cd63ac8004a02bd89061a41d
 
 -----
 
+<br/>
+
+## Dependencies
+
+<br/>
+
+```bash
+sudo apt install ros-humble-usb-cam
+```
+
+<br/>
+
+```bash
+sudo apt purge brltty -y
+```
+
+<br/>
+
+```bash
+pip install pyserial
+```
+
+<br/>
+
+## Option
+
+<br/>
+
+vscode
+
+<br/>
+
+anydesk
+
+<br/>
+
+chrome
+
+<br/>
+
 ## lane_dection && manaul state machine mode
 
 <br/>
