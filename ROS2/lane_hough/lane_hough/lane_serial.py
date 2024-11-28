@@ -67,6 +67,8 @@ class Serial(Node):
         b = 20*data.angular.z       
         # if b < 0:
         #     b += 13
+        if a > 200:
+            a = 200
         if b > self.align:
             b = self.align
         if a >= 0:
